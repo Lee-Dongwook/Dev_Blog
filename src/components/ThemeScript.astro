@@ -1,0 +1,9 @@
+<script is:inline>
+(function() {
+    const ls = localStorage.getItem('theme')
+    const mql = window.matchMedia('(prefers-color-scheme: dark')
+    const systemDark = mql.matches
+    const theme = ls ?? (systemDark ? 'dark':'light')
+    if(theme === 'dark') document.documentElement.classList.add('dark')
+})();
+</script>
