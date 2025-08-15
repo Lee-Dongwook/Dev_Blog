@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection('blog', ({ data }: { data: any }) => !data.draft))
+  .sort((a:any, b:any) => b.data.date.getTime() - a.data.date.getTime())
+---
+<BaseLayout title="Blog">
+  <section class="mx-auto max-w-prose">
+    <h1 class="mb-6 text-3xl font-bold">Blog</h1>
+    <ul class="space-y-6">
+        {posts.map((p:any) => (
+            <li class="group">
+                <a href={`/blog/${p.slug}`} class="blog">
+                  <h2 class="text-xl font-semibold group-hover:underline">{p.data.title}</h2>
+                  <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">{p.data.description}</p>
+                  <time class="mt-1 block text-xs text-gray-500">
+                    {p.data.date.toISOString().slice(0,10)}
+                  </time>
+                </a>
+            </li>
+        ))}
+    </ul>
+  </section>
+</BaseLayout>

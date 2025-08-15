@@ -1,0 +1,47 @@
+---
+import ThemeScript from "../components/ThemeScript.astro";
+const {
+    title = "DongDev Tech Blog",
+    description = "DongWook Dev Tech Blog",
+    image
+} = Astro.props
+---
+
+<html lang="ko" class="bg:bg text:text">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        {image && <meta property="og:image" content={image} />}
+        <ThemeScript />
+    </head>
+    <body class="min-h-screen">
+        <header class="border-b py-4">
+            <div class="container mx-auto flex items-center justify-between">
+                <a href="/" class="font-semibold">DongDev's Tech</a>
+                <!-- React Island -->
+                 <div client:load>
+                    {/** @ts-ignore */}
+                    {import('../components/ThemeToggle').then(m => m.ThemeToggle())}
+                 </div>
+            </div>
+        </header>
+        <main class="container mx-auto py-8">
+            <slot />
+        </main>
+
+        <footer class="border-t py-8 text-sm text-gray-500">
+            <div class="container mx-auto flex items-center justify-between">
+                <span>© {new Date().getFullYear()} Lee-DongWook</span>
+                 <nav class="space-x-4">
+                    <a href="/blog">Blog</a>
+                    <a href="/rss.xml">RSS</a>
+                    <a href="/about">About</a>
+                </nav>
+            </div>
+        </footer>
+    </body>
+</html>
