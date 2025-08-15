@@ -11,6 +11,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwind()],
   },
-  site: "https://your-domain.com",
+  site: "https://Lee-Dongwook.github.io",
   integrations: [react(), mdx(), sitemap(), image()],
 });
