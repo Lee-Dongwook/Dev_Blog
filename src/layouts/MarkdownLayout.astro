@@ -1,7 +1,11 @@
 ---
 import '../styles/global.css'
-import { Slot } from 'astro/components'
 ---
 <div class="prose max-w-none">
-    <Slot />
+    <aside class="mb-6">
+        <slot name="toc" />
+    </aside>
+    <article class="prose max-w-none">
+        <slot />
+    </article>
 </div>

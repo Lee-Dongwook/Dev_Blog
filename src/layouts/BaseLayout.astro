@@ -1,5 +1,7 @@
 ---
+import '../styles/global.css'
 import ThemeScript from "../components/ThemeScript.astro";
+import { ThemeToggle } from '../components/ThemeToggle.tsx'
 const {
     title = "DongDev Tech Blog",
     description = "DongWook Dev Tech Blog",
@@ -22,11 +24,7 @@ const {
         <header class="border-b py-4">
             <div class="container mx-auto flex items-center justify-between">
                 <a href="/" class="font-semibold">DongDev's Tech</a>
-                <!-- React Island -->
-                 <div client:load>
-                    {/** @ts-ignore */}
-                    {import('../components/ThemeToggle').then(m => m.ThemeToggle())}
-                 </div>
+                <ThemeToggle client:load/>
             </div>
         </header>
         <main class="container mx-auto py-8">
