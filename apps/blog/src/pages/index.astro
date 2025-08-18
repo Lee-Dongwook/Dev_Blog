@@ -1,9 +1,9 @@
 ---
-import BaseLayout from "src/layouts/BaseLayout.astro"
+import BaseLayout from "../layouts/BaseLayout.astro"
 import { getCollection } from "astro:content";
-import SharedComponentsDemo from "src/components/SharedComponentsDemo.astro";
+import SharedComponentsDemo from "../components/SharedComponentsDemo.astro";
 
-const posts = (await getCollection('blog',({ data }) => !data.draft)).sort((a,b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, 3)
+const posts = (await getCollection('blog',({ data }:{data:any}) => !data.draft)).sort((a:any,b:any) => b.data.date.getTime() - a.data.date.getTime()).slice(0, 3)
 
 const projects = [
 	{
@@ -76,7 +76,7 @@ const person = {
         </div>
       </div>
       <img src="/avatar.jpg" alt="Lee Dongwook" width="120" height="120"
-           class="rounded-full border object-cover shadow-sm self-start sm:self-auto" />
+        class="rounded-full border object-cover shadow-sm self-start sm:self-auto" />
     </div>
    </section>
 
@@ -136,7 +136,7 @@ const person = {
       <a href="/blog" class="text-sm text-gray-500 hover:underline">모두 보기</a>
     </div>
     <ul class="mt-6 space-y-5">
-      {posts.map((p) => (
+      {posts.map((p:any) => (
         <li class="rounded-lg border p-5 hover:shadow-sm transition">
           <a class="block" href={`/blog/${p.slug}/`}>
             <div class="text-lg font-medium">{p.data.title}</div>
